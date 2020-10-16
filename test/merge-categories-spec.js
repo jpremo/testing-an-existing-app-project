@@ -12,6 +12,9 @@ describe("mergeCategories()", () => {
     `;
 
     it("should return no <li>s for no categories", () => {
+      let actual = mergeCategories(template, [], 'li');
+      actual = actual.includes('<li>');
+      expect(actual).to.be.false;
     });
 
     it("should return a single <li> for one category", () => {
