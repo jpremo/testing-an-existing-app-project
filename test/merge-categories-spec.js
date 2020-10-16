@@ -14,25 +14,36 @@ describe("mergeCategories()", () => {
 
     it("should return no <li>s for no categories", () => {
       let actual = mergeCategories(template, [], 'li');
-      actual = actual.includes('<li>');
-      expect(actual).to.be.false;
-      expect(result).to.contain('<div>');
-      expect(result).to.contain('</div>');
-      expect(result).to.contain('<ul>');
-      expect(result).to.contain('</ul>');
+      let truth = actual.includes('<li>');
+      expect(truth).to.be.false;
+      expect(actual).to.contain('<div>');
+      expect(actual).to.contain('</div>');
+      expect(actual).to.contain('<ul>');
+      expect(actual).to.contain('</ul>');
     });
 
     it("should return a single <li> for one category", () => {
       let actual = mergeCategories(template, ["one"], "li")
-      actual = actual.includes("<li>");
-      expect(actual).to.be.true;
+      let truth = actual.includes("<li>");
+      expect(truth).to.be.true;
+      expect(actual).to.contain('<div>');
+      expect(actual).to.contain('</div>');
+      expect(actual).to.contain('<ul>');
+      expect(actual).to.contain('</ul>');
+      expect(actual).to.contain('<li>one</li>');
     });
 
     it("should return an <li> for each category", () => {
       let cat = ["one", "two"]
       let actual = mergeCategories(template, cat, "li")
-      actual = actual.split("<li>").length - 1;
-      expect(actual).to.be.eql(cat.length);
+      let len = actual.split("<li>").length - 1;
+      expect(len).to.be.eql(cat.length);
+      expect(actual).to.contain('<div>');
+      expect(actual).to.contain('</div>');
+      expect(actual).to.contain('<ul>');
+      expect(actual).to.contain('</ul>');
+      expect(actual).to.contain('<li>one</li>');
+      expect(actual).to.contain('<li>two</li>');
     });
   });
 
