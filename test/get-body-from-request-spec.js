@@ -10,6 +10,9 @@ describe("The getBodyFromRequest function", () => {
 
   it('returns an empty string for no body', done => {
     const bodyPromise = getBodyFromRequest(fakeReq);
+
+
+
     fakeReq.emit('end');
 
     bodyPromise
@@ -23,6 +26,21 @@ describe("The getBodyFromRequest function", () => {
   });
 
   it('returns the data read from the stream', done => {
-    expect.fail('please write this test');
+    const bodyPromise = getBodyFromRequest(fakeReq);
+    const data1 = "This is some";
+    const data2 = " data from the browser";
+
+    fakeReq.emit("data", data1);
+    fakeReq.emit("data", data2);
+    fakeReq.emit('end');
+
+    bodyPromise
+      .then(body => {
+        if (body === data1 + data2) {
+          done();
+        } else {
+          done(`Failed. Got ${body}`);
+        }
+      });
   });
 });
