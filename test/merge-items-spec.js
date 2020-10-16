@@ -9,7 +9,12 @@ describe("The mergeItems function", () => {
     </table>
   `;
   it("should return no <tr>s and no <td>s for no items", () => {
-    expect.fail('please write this test');
+    let result = mergeItems(template, []);
+
+    expect(result).to.not.contain('<tr>');
+    expect(result).to.not.contain("</tr>");
+    expect(result).to.not.contain("<td>");
+    expect(result).to.not.contain("</td>");
   });
 
   it("should return a single <tr>, four <td>s, and a <form> for one uncompleted item", () => {
