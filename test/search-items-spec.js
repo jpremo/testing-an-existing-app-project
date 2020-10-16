@@ -6,7 +6,8 @@ describe("The searchItems function", () => {
     // Declare the items and term variables, here.
     // Items should be an empty array.
     // Term should be a non-empty term.
-
+    let items = [];
+    let term = 'term';
     // ACT
     const result = searchItems(items, term);
 
@@ -28,7 +29,7 @@ describe("The searchItems function", () => {
 
     // ASSERT
     // Fix this assertion to be correct
-    expect.fail('make this assert the proper length of the result.');
+    expect(result).to.have.length(3)
   });
 
   it('Returns items whose title contains the term, case insensitive', () => {
@@ -40,7 +41,7 @@ describe("The searchItems function", () => {
     ];
     // Set term to a string that will return only two
     // of the items from the above collection.
-    const term = null;
+    const term = 'is';
 
     // ACT
     const result = searchItems(items, term);
